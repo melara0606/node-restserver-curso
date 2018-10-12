@@ -1,39 +1,22 @@
 require('./config/config')
 
 const express = require('express')
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 const app = express()
 
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/', (req, res) => {
-  res.send('Hola mundo')
+app.use(require('./routes/usuario'))
+
+const PORT = process.env.PORT
+mongoose.connect(process.env.URLDB, (err) => {
+  if(err) new Error('No podes conectar con la base de datos')
+  console.log('Base de Datos ONLINE');
 })
 
-app.get('/usuario', (req, res) => {
-  res.json('usuario')
-})
-
-app.post('/usuario', (req, res) => {
-  let body = req.body
-  res.json({
-    body
-  })
-})
-
-app.put('/usuario/:id', (req, res) => {
-  let id = req.params.id
-  res.json({
-    id,
-  })
-})
-
-app.delete('/usuario/:id', (req, res) => {
-  res.json('delete usuario')
-})
-
-app.listen(process.env.PORT, () =>{
-  console.log('Iniciando el proyecto en el puerto 3000')
+app.listen(PORT, () =>{
+  console.log('Iniciando el proyecto en el puerto ' + PORT)
 })
