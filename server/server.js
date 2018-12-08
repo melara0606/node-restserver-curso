@@ -10,6 +10,7 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use( express.static( path.join(__dirname, '../public') ) )
 
 const urlRoute = `${__dirname}/routes`
 fs.readdir(urlRoute, (err, files) => {

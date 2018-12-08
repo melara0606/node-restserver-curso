@@ -40,3 +40,10 @@ if(process.env.NODE_ENV == 'dev'){
 }
 
 process.env.URLDB = urlDB;
+
+/**
+ * ============================================================
+ * Configuracion de Google Sign In
+ * ============================================================
+ */
+process.env.googleSignIn = process.env.googleSignIn || '919911088583-ij4mhgforfmlktcnve7sb1qate23on7j.apps.googleusercontent.com';
