@@ -5,10 +5,12 @@ const path = require('path')
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const fileupload = require('express-fileupload')
 
 const app = express()
 
 app.use(bodyParser.json())
+app.use(fileupload())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use( express.static( path.join(__dirname, '../public') ) )
 
